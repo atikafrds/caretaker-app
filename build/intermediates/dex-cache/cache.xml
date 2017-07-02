@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.1_2b583709295bc7cab1d384d445d13e18d3130b6c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/7213c0ea9772e5c3d51f6ece919e33cd5faccd5d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_8efe042df86a5a98419e52e269c98114b7667813.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/41b543da479f025304d455572e9ae77648577cd5/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8f83a631abfdb790591a720e0cfb5f41329831c3">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_99fd52292f869872dd4932ea9a491479e64bbc62.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/f9c0e41f5938590194d18fe34a60543581762b6f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="de24d8023e8da79f30bee46b298f606e5e758432">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_7735c7b2795c9b764403a191544ebf2d4927ee52.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/53aadfc861f6000b671fbed8bc59cf2ae8170e01/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_4e93fde5a675fa4f9fd5f8aac007ca10d3d89ad9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/28a3ac72cf4d3941757696cefe9279db170c5157/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5c1f80f62ccad560edcd6609fc75f385cf7cb45a">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_a951b842c1e688a83c31464b142a04f4474b5805.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/9df0aa84911b485d7dcc1da291aab9022b443343/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_a0bd7b114276f35e8255d9d15523b920620c7ccf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/8fb1e7ac2ead246fb82ab539ea383c80dd87c06a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="69e74a8b1cbf5b8ee0fc0cca6bab1ac6c45efef8">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_f8abe68801531ea4043467189e5e10752073c14f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/20ab8ae4df786ca1265e7c7b5b968b5f05445122/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0c6924cbba8248329a8c58ead6a380efe7eee76e">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_7b12cbb8dbb456a2f02509521ba1dae17ff35027.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/cc2ddc51397c142ecc2050850ce2af346d81f672/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_d544e73bb1bbc865ee6000cec951ca74b45f7e43.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/b99bdab3c4fbf2da7d0b7cd084d17718e5e64866/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_2ea0006a6dde1204f934e76b053a32dcac17a854.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/f53acc55c4a33ea35d6540012bf3ef4e179e4cee/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_9160348d0686b2c567c8d552f1445c3aa750b4c3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/7f125c1e9bc184f056dfc106f454841498d2b548/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_c7ee955534edf6c761b934abdbb18d7ea5881488.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/5985eedb9a95fb86aeea510975f617039db65248/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d79c575e1d97b0298746a4c032a0c1dc201c2f82">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_cf6148fe8d8e91521eb18d4d1f38373b4967fc60.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/a932c1d3bd81fdbf129b212411ae166b20c15468/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="da832806828ba407284c0c4b1d87b8f9ed9f2520">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_c1dd2755a5990930b76e87d31b7e196df08e237f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/9762a277041e88de3f79def983c0416441016ac8/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_ecf58ba94eb4bbf9480c05360651b081ef2ae730.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_fb7262c6f01519f8a7b509cc17129de8d868320f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/83396e73ef4eccbc8ecbe2eaa8cc853d4fd971d9/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0a534044236cf81b002604643d23e7ca56bd1ee0">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_e15c9928c080354f542e4d45d1d94bec8768d16f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/b9aac0422c00a1d830b658c99e513d9e0fae90df/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_572b9fe51022f7cc012854072c09ae8d346ce91c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/8b855f7d4aa3c629b966affce4ccc5c5b7b17496/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_7878d08dfa4c0668c69290a281f938c6afed7620.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/81a235a3e8c1be8b71dc83c85b9d19f9f2de3fe4/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_d0b604f4d32ec780e0e71d17ea1b4f130ceb0a99.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/084a52eb3c3418d9e8b815c63f8fb0967b2d1d4f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_fe8d5399ee374eddc5030d2df70d4d332c995e96.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/4ad2fcca30e735c0c391dbf5af1a4854f0ffb36b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3f0a85e6000998ac322ddd50750e8cf91601a84b">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_d5a1ef89d28289314a2213b88fcac0b6fde46376.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/05c49faaae2770555d7743482d00c37cad4ff074/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="7b3eaf755284fb08a6d616a55fbb07dc3917d5e7">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_1140af7b861a215fa9f6f4b0d8d805d89adc5238.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/05d93f205c3191de41b472b6b09a9b2c3481f17f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_b00aae1eee32e623ecc3dae8a22ca797b5e68c87.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/t-atika.firdaus/.android/build-cache/061f33bcd6f01364c4b92b7671a71e579cd25d35/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="900a290779cdb4eb2e63b6f7806fd9f30ce4f60d">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/CareTaker/app/build/intermediates/pre-dexed/debug/classes_cca4d66d13bf215e75183e3b412d9df1ae612ad3.jar" />
+    </item>
+
+</items>

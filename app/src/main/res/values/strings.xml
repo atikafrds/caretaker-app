@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CareTaker</string>
+    <string name="registerTextButton">Don\'t have any account? Register <b>here</b></string>
+    <string name="loginTextButton">Have an account? Login <b>here</b></string>
+    <string name="userRoleText">I\'m a device user</string>
+    <string name="careTakerRoleText">I\'m a caretaker</string>
+
+    <string name="text_home">Home Fragment</string>
+    <string name="text_notifications">Notifications Fragment</string>
+    <string name="text_search">Search Fragment</string>
+    <string name="text_profile">Profile Fragment</string>
+
+    <string name="menu_home">Map</string>
+    <string name="menu_partner">Partner</string>
+    <string name="menu_notifications">Notifications</string>
+    <string name="menu_profile">Profile</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

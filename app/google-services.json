@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "328952541927",
+    "firebase_url": "https://caretaker-d1342.firebaseio.com",
+    "project_id": "caretaker-d1342",
+    "storage_bucket": "caretaker-d1342.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328952541927:android:45fcf9a3c5430b39",
+        "android_client_info": {
+          "package_name": "com.atikafrds.caretaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328952541927-hmnajq3b19tf144hg4ruf1luv25ip9js.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAclnWrqLukvEe25sB0vs1emLqiQDX7Vn0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
