@@ -151,6 +151,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     });
                 }
+            } else {
+                Toast.makeText(LoginActivity.this, "Log in failed", Toast.LENGTH_SHORT).show();
             }
             }
         });
