@@ -28,8 +28,6 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class MapFragment extends Fragment {
-    public static final String TAG = CaretakerActivity.class.getSimpleName();
-
     private DatabaseReference caretakerDbReference, userDbReference;
     private FirebaseAuth firebaseAuth;
     private String partnerUserId, partnerName;
@@ -57,13 +55,17 @@ public class MapFragment extends Fragment {
             caretakerDbReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    DataSnapshot userProfile = dataSnapshot.child(user.getUid());
-                    partnerUserId = userProfile.child("partnerId").getValue().toString();
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        if (data.child("id").getValue().toString().equals(user.getUid())) {
+                            partnerUserId = data.child("partnerId").getValue().toString();
+                            break;
+                        }
+                    }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.e(TAG, "Failed to read database.", databaseError.toException());
+                    Log.e(CaretakerActivity.TAG, "Failed to read database.", databaseError.toException());
                 }
             });
 
@@ -71,16 +73,20 @@ public class MapFragment extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (partnerUserId != null) {
-                        DataSnapshot userProfile = dataSnapshot.child(partnerUserId);
-                        partnerLat = Double.parseDouble(userProfile.child("lat").getValue().toString());
-                        partnerLng = Double.parseDouble(userProfile.child("lng").getValue().toString());
-                        partnerName = userProfile.child("fullname").getValue().toString();
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            if (data.child("id").getValue().toString().equals(partnerUserId)) {
+                                partnerLat = Double.parseDouble(data.child("lat").getValue().toString());
+                                partnerLng = Double.parseDouble(data.child("lng").getValue().toString());
+                                partnerName = data.child("fullname").getValue().toString();
+                                break;
+                            }
+                        }
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.e(TAG, "Failed to read database.", databaseError.toException());
+                    Log.e(CaretakerActivity.TAG, "Failed to read database.", databaseError.toException());
                 }
             });
         }

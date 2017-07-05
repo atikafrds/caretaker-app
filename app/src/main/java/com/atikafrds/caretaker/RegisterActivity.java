@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -124,13 +125,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                             if (userRole == UserRole.DEVICE_USER) {
                                 databaseReference = FirebaseDatabase.getInstance().getReference("users");
                             } else {
                                 databaseReference = FirebaseDatabase.getInstance().getReference("caretakers");
                             }
                             String userId = databaseReference.push().getKey();
-                            User user = new User(fullname, email, phoneNumber, null, 0, 0);
+                            User user = new User(firebaseUser.getUid(), fullname, email, phoneNumber, "7OFx7ebKmxTrF2VdSImjmzCCxAD2", 0, 0);
                             databaseReference.child(userId).setValue(user);
                             if (userRole == UserRole.DEVICE_USER) {
                                 startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));

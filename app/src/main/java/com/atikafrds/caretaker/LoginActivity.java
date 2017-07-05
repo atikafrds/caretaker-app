@@ -111,10 +111,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (!dataSnapshot.child(user.getUid()).exists()) {
-                                Toast.makeText(LoginActivity.this, "Account is not found", Toast.LENGTH_SHORT).show();
-                                return;
-                            } else {
+                            boolean found = false;
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                if (data.child("id").getValue().toString().equals(user.getUid())) {
+                                    found = true;
+                                    break;
+                                }
+                            }
+
+                            if (found) {
                                 if (userRole == UserRole.DEVICE_USER) {
                                     startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));
                                 } else {
@@ -125,6 +130,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 editor.putString(role, userRole.toString());
                                 editor.commit();
                                 finish();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Account is not found", Toast.LENGTH_SHORT).show();
+                                return;
                             }
                         }
 

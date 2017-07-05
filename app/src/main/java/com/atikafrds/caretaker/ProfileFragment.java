@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import static com.atikafrds.caretaker.LoginActivity.role;
-import static com.atikafrds.caretaker.MapFragment.TAG;
 
 /**
  * Created by t-atika.firdaus on 22/06/17.
@@ -66,15 +65,19 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    DataSnapshot userProfile = dataSnapshot.child(user.getUid());
-                    profileFullname.setText(userProfile.child("fullname").getValue().toString());
-                    profileEmail.setText(userProfile.child("email").getValue().toString());
-                    profilePhoneNumber.setText(userProfile.child("phoneNumber").getValue().toString());
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        if (data.child("id").getValue().toString().equals(user.getUid())) {
+                            profileFullname.setText(data.child("fullname").getValue().toString());
+                            profileEmail.setText(data.child("email").getValue().toString());
+                            profilePhoneNumber.setText(data.child("phoneNumber").getValue().toString());
+                            break;
+                        }
+                    }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.e(TAG, "Failed to read database.", databaseError.toException());
+                    Log.e(CaretakerActivity.TAG, "Failed to read database.", databaseError.toException());
                 }
             });
         }
@@ -86,7 +89,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         if (view == logoutButton) {
             firebaseAuth.signOut();
-            startActivity(new Intent(getActivity(), LoginActivity.class));
+            startActivity(new Intent(getContext(), LoginActivity.class));
             getActivity().finish();
         }
     }

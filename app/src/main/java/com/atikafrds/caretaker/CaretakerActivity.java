@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 public class CaretakerActivity extends AppCompatActivity {
     private static final String SELECTED_ITEM = "arg_selected_item";
+    public static final String TAG = CaretakerActivity.class.getSimpleName();
 
     private BottomNavigationView bottomNavigation;
     private int mSelectedItem;
@@ -40,7 +41,7 @@ public class CaretakerActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(SELECTED_ITEM, mSelectedItem);
+        outState.putInt(SELECTED_ITEM, 0);
         super.onSaveInstanceState(outState);
     }
 

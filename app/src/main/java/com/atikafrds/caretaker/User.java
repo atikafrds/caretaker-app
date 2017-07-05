@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
  */
 
 public class User {
+    private String id;
     private String fullname;
     private String email;
     private String phoneNumber;
@@ -18,14 +19,19 @@ public class User {
 
     }
 
-    public User(String fullname, String email, String phoneNumber, @Nullable String partnerId,
+    public User(String id, String fullname, String email, String phoneNumber, String partnerId,
             double lat, double lng) {
+        this.id = id;
         this.fullname = fullname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.partnerId = partnerId;
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getFullname() {
@@ -50,6 +56,10 @@ public class User {
 
     public double getLng() {
         return lng;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setFullname(String fullname) {
