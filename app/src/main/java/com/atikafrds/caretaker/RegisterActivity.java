@@ -55,23 +55,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         registerButton = (Button) findViewById(R.id.registerButton);
         registerButton.setOnClickListener(this);
-//        registerButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), CaretakerActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         loginTextButton = (TextView) findViewById(R.id.loginTextButton);
         loginTextButton.setOnClickListener(this);
-//        loginTextButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), CaretakerActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
@@ -144,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 databaseReference = FirebaseDatabase.getInstance().getReference("caretakers");
                             }
                             String userId = databaseReference.push().getKey();
-                            User user = new User(fullname, email, phoneNumber, null);
+                            User user = new User(fullname, email, phoneNumber, null, 0, 0);
                             databaseReference.child(userId).setValue(user);
                             if (userRole == UserRole.DEVICE_USER) {
                                 startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));

@@ -51,28 +51,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         loginRadioGroup = (RadioGroup) findViewById(R.id.loginRoleRadioGroup);
 
-//        loginDeviceUserRole = (RadioButton) findViewById(R.id.loginDeviceUserRole);
-//        loginCaretakerRole = (RadioButton) findViewById(R.id.loginCaretakerRole);
-
         loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(this);
-//        loginButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), CaretakerActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         registerTextButton = (TextView) findViewById(R.id.registerTextButton);
         registerTextButton.setOnClickListener(this);
-//        registerTextButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), RegisterActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 

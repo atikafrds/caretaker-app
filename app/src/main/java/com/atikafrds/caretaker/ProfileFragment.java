@@ -1,10 +1,8 @@
 package com.atikafrds.caretaker;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,34 +21,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import static com.atikafrds.caretaker.LoginActivity.role;
+import static com.atikafrds.caretaker.MapFragment.TAG;
 
 /**
  * Created by t-atika.firdaus on 22/06/17.
  */
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
-    private static final String TAG = CaretakerActivity.class.getSimpleName();
-
     private TextView profileFullname, profileEmail, profilePhoneNumber;
     private Button logoutButton;
     private String userRole;
 
-    private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
     public static ProfileFragment newInstance() {
         ProfileFragment fragment = new ProfileFragment();
         return fragment;
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (view == logoutButton) {
-            firebaseAuth.signOut();
-            startActivity(new Intent(getActivity(), LoginActivity.class));
-            getActivity().finish();
-        }
     }
 
     @Override
@@ -94,5 +80,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         }
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == logoutButton) {
+            firebaseAuth.signOut();
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+            getActivity().finish();
+        }
     }
 }

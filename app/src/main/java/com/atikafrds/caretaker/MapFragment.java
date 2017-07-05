@@ -2,28 +2,166 @@ package com.atikafrds.caretaker;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by t-atika.firdaus on 22/06/17.
  */
 
 public class MapFragment extends Fragment {
+    public static final String TAG = CaretakerActivity.class.getSimpleName();
+
+    private DatabaseReference caretakerDbReference, userDbReference;
+    private FirebaseAuth firebaseAuth;
+    private String partnerUserId, partnerName;
+    private double partnerLat, partnerLng;
+
+    MapView mapView;
+    private GoogleMap googleMap;
+
     public static MapFragment newInstance() {
         MapFragment fragment = new MapFragment();
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.map_fragment, container, false);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        caretakerDbReference = FirebaseDatabase.getInstance().getReference("caretakers");
+        userDbReference = FirebaseDatabase.getInstance().getReference("users");
+        if (user != null) {
+            caretakerDbReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    DataSnapshot userProfile = dataSnapshot.child(user.getUid());
+                    partnerUserId = userProfile.child("partnerId").getValue().toString();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e(TAG, "Failed to read database.", databaseError.toException());
+                }
+            });
+
+            userDbReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (partnerUserId != null) {
+                        DataSnapshot userProfile = dataSnapshot.child(partnerUserId);
+                        partnerLat = Double.parseDouble(userProfile.child("lat").getValue().toString());
+                        partnerLng = Double.parseDouble(userProfile.child("lng").getValue().toString());
+                        partnerName = userProfile.child("fullname").getValue().toString();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e(TAG, "Failed to read database.", databaseError.toException());
+                }
+            });
+        }
+
+        mapView = (MapView) view.findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+
+        mapView.onResume(); // needed to get the map to display immediately
+
+        try {
+            MapsInitializer.initialize(getActivity().getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap mMap) {
+                googleMap = mMap;
+
+                // For showing a move to my location button
+                try {
+                    googleMap.setMyLocationEnabled(true);
+                } catch (SecurityException e) {
+
+                }
+
+                // For dropping a marker at a point on the Map
+                LatLng partnerLoc = new LatLng(partnerLat, partnerLng);
+                googleMap.addMarker(new MarkerOptions().position(partnerLoc).title(partnerName).snippet("Marker Description"));
+//                map.addMarker(new MarkerOptions()               .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)).anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
+//                        .position(new LatLng(47.17, 27.5699))); //Iasi, Romania
+
+                // For zooming automatically to the location of the marker
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(partnerLoc).zoom(12).build();
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
+        });
+
+        return view;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.map_fragment, container, false);
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
+//        userRole = sharedPref.getString(role, "");
+////        firebaseAuth = FirebaseAuth.getInstance();
+////
+////        if (userRole.equals(UserRole.DEVICE_USER.toString())) {
+////            databaseReference = FirebaseDatabase.getInstance().getReference("users");
+////        } else {
+////            databaseReference = FirebaseDatabase.getInstance().getReference("caretakers");
+////        }
+////
+////        FirebaseUser user = firebaseAuth.getCurrentUser();
+////        databaseReference = databaseReference.child(user.getUid());
+//    }
 }

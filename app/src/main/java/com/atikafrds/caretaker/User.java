@@ -10,17 +10,22 @@ public class User {
     private String fullname;
     private String email;
     private String phoneNumber;
-    private User partner;
+    private String partnerId;
+    private double lat;
+    private double lng;
 
     public User() {
 
     }
 
-    public User(String fullname, String email, String phoneNumber, @Nullable User partner) {
+    public User(String fullname, String email, String phoneNumber, @Nullable String partnerId,
+            double lat, double lng) {
         this.fullname = fullname;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.partner = partner;
+        this.partnerId = partnerId;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public String getFullname() {
@@ -35,8 +40,16 @@ public class User {
         return phoneNumber;
     }
 
-    public User getPartner() {
-        return partner;
+    public String getPartnerId() {
+        return partnerId;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLng() {
+        return lng;
     }
 
     public void setFullname(String fullname) {
@@ -51,7 +64,15 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setPartner(User partner) {
-        this.partner = partner;
+    public void setPartner(String partnerId) {
+        this.partnerId = partnerId;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 }
