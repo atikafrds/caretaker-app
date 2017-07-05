@@ -19,16 +19,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/CaretakerActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/CaretakerActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/FirebaseHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/FirebaseHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/MapFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/MapFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/PartnerFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/PartnerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/ProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/ProfileFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/RegisterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/RegisterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/User.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/partner_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/partner_fragment.xml" />
     </list>
     <ignored path="Caretaker App.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -108,40 +99,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PartnerFragment.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PartnerFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/PartnerFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-923">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="351">
+              <caret line="86" column="49" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="49" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile_fragment.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/profile_fragment.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="178" column="42" selection-start-line="178" selection-start-column="42" selection-end-line="178" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="partner_fragment.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/partner_fragment.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="590">
-              <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-              <folding>
-                <element signature="e#790#812#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -2631,8 +2594,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/CaretakerActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/MapFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/ProfileFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/PartnerFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/partner_fragment.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/PartnerFragment.java" />
       </list>
     </option>
   </component>
@@ -3591,6 +3554,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/ProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/partner_fragment.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+          <folding>
+            <element signature="e#790#812#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/profile_fragment.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3602,34 +3588,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/ProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/atikafrds/caretaker/PartnerFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-923">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="351">
+          <caret line="86" column="49" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="49" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/partner_fragment.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-          <folding>
-            <element signature="e#790#812#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

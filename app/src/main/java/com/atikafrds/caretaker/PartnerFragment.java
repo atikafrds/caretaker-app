@@ -84,7 +84,6 @@ public class PartnerFragment extends Fragment implements View.OnClickListener {
                     if (partnerUserId != null) {
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
                             if (data.child("id").getValue().toString().equals(partnerUserId)) {
-                                Toast.makeText(getContext(), data.child("fullname").getValue().toString(), Toast.LENGTH_LONG).show();
                                 partnerNameView = (TextView) view.findViewById(R.id.partnerFullname);
                                 partnerEmailView = (TextView) view.findViewById(R.id.partnerEmail);
                                 partnerPhoneNumberView = (TextView) view.findViewById(R.id.partnerPhoneNumber);
