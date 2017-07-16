@@ -1,5 +1,7 @@
 package com.atikafrds.caretaker;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -7,10 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class CaretakerActivity extends AppCompatActivity {
     private static final String SELECTED_ITEM = "arg_selected_item";
     public static final String TAG = CaretakerActivity.class.getSimpleName();
+    public static boolean isHavePartner;
 
     private BottomNavigationView bottomNavigation;
     private int mSelectedItem;
@@ -19,6 +23,8 @@ public class CaretakerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caretaker);
+
+        isHavePartner = getIntent().getBooleanExtra("isHavePartner", true);
 
         bottomNavigation = (BottomNavigationView) findViewById(R.id.bottomNavigation);
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

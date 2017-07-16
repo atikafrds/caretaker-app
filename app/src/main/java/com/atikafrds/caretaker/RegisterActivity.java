@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 databaseReference = FirebaseDatabase.getInstance().getReference("caretakers");
                             }
                             String userId = databaseReference.push().getKey();
-                            User user = new User(firebaseUser.getUid(), fullname, email, phoneNumber, "7OFx7ebKmxTrF2VdSImjmzCCxAD2", 0, 0);
+                            User user = new User(firebaseUser.getUid(), fullname, email, phoneNumber, "", 0, 0);
                             databaseReference.child(userId).setValue(user);
                             if (userRole == UserRole.DEVICE_USER) {
                                 startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));

@@ -1,6 +1,7 @@
 package com.atikafrds.caretaker;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -27,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static java.security.AccessController.getContext;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = LoginActivity.class.getSimpleName();
@@ -40,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private DatabaseReference databaseReference;
 
     public static final String role = "userRole";
+    private boolean isHavePartner = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,20 +119,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 if (data.child("id").getValue().toString().equals(user.getUid())) {
                                     found = true;
+                                    if (data.child("partnerId").getValue().toString().equals("")) {
+                                        isHavePartner = false;
+//                                        Toast.makeText(LoginActivity.this, "is have partner: " + sharedPref.getBoolean("isHavePartner", true), Toast.LENGTH_LONG).show();
+                                    }
                                     break;
                                 }
                             }
 
                             if (found) {
                                 if (userRole == UserRole.DEVICE_USER) {
-                                    startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));
+                                    Intent intent = new Intent(getApplicationContext(), CaretakerActivity.class);
+                                    intent.putExtra("isHavePartner", isHavePartner);
+                                    startActivity(intent);
+//                                    startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));
                                 } else {
-                                    startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));
+                                    Intent intent = new Intent(getApplicationContext(), CaretakerActivity.class);
+                                    intent.putExtra("isHavePartner", isHavePartner);
+                                    startActivity(intent);
                                 }
-                                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                                SharedPreferences.Editor editor = sharedPref.edit();
-                                editor.putString(role, userRole.toString());
-                                editor.commit();
+//                                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//                                SharedPreferences.Editor editor = sharedPref.edit();
+//                                editor.putString(role, userRole.toString());
+//                                editor.commit();
                                 finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, "Account is not found", Toast.LENGTH_SHORT).show();

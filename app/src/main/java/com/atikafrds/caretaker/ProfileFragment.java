@@ -3,6 +3,7 @@ package com.atikafrds.caretaker;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +32,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private Button logoutButton;
     private String userRole;
 
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authListener;
     private DatabaseReference databaseReference;
 
     public static ProfileFragment newInstance() {
@@ -50,8 +51,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         logoutButton = (Button) view.findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(this);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
+//        authListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
             userRole = sharedPref.getString(role, "");
@@ -80,15 +83,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     Log.e(CaretakerActivity.TAG, "Failed to read database.", databaseError.toException());
                 }
             });
+        } else {
+            startActivity(new Intent(getContext(), LoginActivity.class));
+            getActivity().finish();
         }
-
         return view;
     }
 
     @Override
     public void onClick(View view) {
         if (view == logoutButton) {
-            firebaseAuth.signOut();
+            FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getContext(), LoginActivity.class));
             getActivity().finish();
         }

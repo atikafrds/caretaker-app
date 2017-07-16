@@ -1,15 +1,14 @@
 package com.atikafrds.caretaker;
 
-import android.app.ListFragment;
-import android.support.v4.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,28 +20,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
+import static com.atikafrds.caretaker.CaretakerActivity.TAG;
+import static com.atikafrds.caretaker.CaretakerActivity.isHavePartner;
+
 /**
  * Created by t-atika.firdaus on 22/06/17.
  */
 
 public class PartnerFragment extends Fragment implements View.OnClickListener {
-    private FirebaseAuth firebaseAuth;
     private DatabaseReference userDbReference, caretakerDbReference;
     private String partnerUserId, partnerName, partnerEmail, partnerPhoneNumber;
     private TextView partnerNameView, partnerEmailView, partnerPhoneNumberView;
+    private ArrayList<User> userList;
+    private ListView listView;
 
     public static PartnerFragment newInstance() {
         PartnerFragment fragment = new PartnerFragment();
         return fragment;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
-//                R.array.Planets, R.layout.user_list_item);
-//        setListAdapter(adapter);
-//        getListView().setOnItemClickListener(this);
     }
 
 //    @Override
@@ -63,11 +59,13 @@ public class PartnerFragment extends Fragment implements View.OnClickListener {
             caretakerDbReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        if (data.child("id").getValue().toString().equals(user.getUid())) {
-                            partnerUserId = data.child("partnerId").getValue().toString();
-//                            Toast.makeText(getContext(), partnerUserId, Toast.LENGTH_LONG).show();
+                    if (isHavePartner) {
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            if (data.child("id").getValue().toString().equals(user.getUid())) {
+                                partnerUserId = data.child("partnerId").getValue().toString();
+                            }
                             break;
+//                            Toast.makeText(getContext(), partnerUserId, Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -83,7 +81,13 @@ public class PartnerFragment extends Fragment implements View.OnClickListener {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (partnerUserId != null) {
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
-                            if (data.child("id").getValue().toString().equals(partnerUserId)) {
+                            User newUser = new User();
+                            newUser.setFullname(data.child("fullname").getValue().toString());
+                            newUser.setId(data.child("id").getValue().toString());
+                            newUser.setPhoneNumber(data.child("phoneNumber").getValue().toString());
+                            userList.add(newUser);
+
+                            if (newUser.getId().equals(partnerUserId)) {
                                 partnerNameView = (TextView) view.findViewById(R.id.partnerFullname);
                                 partnerEmailView = (TextView) view.findViewById(R.id.partnerEmail);
                                 partnerPhoneNumberView = (TextView) view.findViewById(R.id.partnerPhoneNumber);
@@ -108,6 +112,19 @@ public class PartnerFragment extends Fragment implements View.OnClickListener {
                 }
             });
         }
+
+        Log.d(TAG, userList.toString());
+        Log.d(TAG, partnerUserId);
+
+//        PartnerListAdapter adapter = new PartnerListAdapter(getContext(), R.layout.partner_list_item, userList);
+//        listView = (ListView) view.findViewById(R.id.select_partner_list_view);
+//        listView.setAdapter(adapter);
+
+//        if (!isHavePartner) {
+////            view.findViewById(R.id.select_partner_list_view).setVisibility(View.VISIBLE);
+//            view.findViewById(R.id.section1).setVisibility(View.GONE);
+//            view.findViewById(R.id.section2).setVisibility(View.GONE);
+//        }
 
         return view;
     }

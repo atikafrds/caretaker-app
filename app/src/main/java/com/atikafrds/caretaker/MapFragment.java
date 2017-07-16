@@ -1,5 +1,7 @@
 package com.atikafrds.caretaker;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -23,6 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+import java.util.Locale;
+
 /**
  * Created by t-atika.firdaus on 22/06/17.
  */
@@ -35,6 +40,8 @@ public class MapFragment extends Fragment {
 
     MapView mapView;
     private GoogleMap googleMap;
+    Geocoder geocoder;
+    List<Address> addresses;
 
     public static MapFragment newInstance() {
         MapFragment fragment = new MapFragment();
@@ -116,13 +123,33 @@ public class MapFragment extends Fragment {
 
                 // For dropping a marker at a point on the Map
                 LatLng partnerLoc = new LatLng(partnerLat, partnerLng);
-                googleMap.addMarker(new MarkerOptions().position(partnerLoc).title(partnerName).snippet("Marker Description"));
+                geocoder = new Geocoder(getContext(), Locale.getDefault());
+                try {
+                    addresses = geocoder.getFromLocation(partnerLat, partnerLng, 1);
+                    String address, city;
+
+                    if (addresses.get(0).getAddressLine(0) != null) {
+                        address = addresses.get(0).getAddressLine(0);
+                    } else {
+                        address = "";
+                    }
+                    if (addresses.get(0).getLocality() != null) {
+                        city = addresses.get(0).getLocality();
+                    } else {
+                        city = "";
+                    }
+                    String loc = address + ", " + city;
+
+                    googleMap.addMarker(new MarkerOptions().position(partnerLoc).title(partnerName).snippet(loc));
 //                map.addMarker(new MarkerOptions()               .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)).anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
 //                        .position(new LatLng(47.17, 27.5699))); //Iasi, Romania
 
-                // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(partnerLoc).zoom(12).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                    // For zooming automatically to the location of the marker
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(partnerLoc).zoom(12).build();
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
