@@ -16,7 +16,13 @@ public class User {
     private double lng;
 
     public User() {
-
+        this.id = "";
+        this.fullname = "";
+        this.email = "";
+        this.phoneNumber = "";
+        this.partnerId = "";
+        this.lat = 0;
+        this.lng = 0;
     }
 
     public User(String id, String fullname, String email, String phoneNumber, String partnerId,

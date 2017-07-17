@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -38,14 +31,25 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/partnerNameinList"/>
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#4C5A68"
+                    android:fontFamily="sans-serif"
+                    android:id="@+id/partnerNameinList"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#4C5A68"
+                    android:fontFamily="sans-serif"
                     android:id="@+id/partnerPhoneNumberinList"/>
 
             </LinearLayout>
@@ -59,7 +63,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select"
-                    android:layout_gravity="center"/>
+                    android:textSize="12sp"
+                    android:layout_gravity="center"
+                    android:id="@+id/selectPartner"
+                    android:textColor="#ffffff"
+                    android:textAllCaps="false"
+                    android:background="#3694ff"/>
 
             </LinearLayout>
 
@@ -71,13 +80,6 @@
             android:layout_weight="1">
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
 
     </LinearLayout>
 

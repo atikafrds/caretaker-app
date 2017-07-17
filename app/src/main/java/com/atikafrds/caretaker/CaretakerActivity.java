@@ -1,20 +1,18 @@
 package com.atikafrds.caretaker;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class CaretakerActivity extends AppCompatActivity {
     private static final String SELECTED_ITEM = "arg_selected_item";
     public static final String TAG = CaretakerActivity.class.getSimpleName();
-    public static boolean isHavePartner;
+    public static String partnerId, currentUserId;
+    public static UserRole userRole;
 
     private BottomNavigationView bottomNavigation;
     private int mSelectedItem;
@@ -24,7 +22,9 @@ public class CaretakerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caretaker);
 
-        isHavePartner = getIntent().getBooleanExtra("isHavePartner", true);
+        partnerId = getIntent().getStringExtra("partnerId");
+        currentUserId = getIntent().getStringExtra("currentUserId");
+        userRole = getIntent().getStringExtra("userRole").equals("DEVICE_USER") ? UserRole.DEVICE_USER : UserRole.CARETAKER;
 
         bottomNavigation = (BottomNavigationView) findViewById(R.id.bottomNavigation);
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

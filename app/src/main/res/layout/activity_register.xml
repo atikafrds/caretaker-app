@@ -18,6 +18,7 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:text="Register"
+        android:textColor="#4C5A68"
         android:textStyle="bold"
         android:textSize="20sp"
         android:gravity="center"/>
@@ -60,6 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:textColorHint="#858C93"
+                android:fontFamily="sans-serif"
                 android:inputType="textPersonName"
                 android:hint="Full Name"
                 android:textSize="16sp"/>
@@ -112,6 +115,8 @@
                 android:id="@+id/registerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:textColorHint="#858C93"
+                android:fontFamily="sans-serif"
                 android:layout_weight="1"
                 android:inputType="textEmailAddress"
                 android:hint="Email"
@@ -165,6 +170,8 @@
                 android:id="@+id/registerPassword"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:textColorHint="#858C93"
+                android:fontFamily="sans-serif"
                 android:layout_weight="1"
                 android:inputType="textPassword"
                 android:hint="Password"
@@ -219,6 +226,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:textColorHint="#858C93"
+                android:fontFamily="sans-serif"
                 android:inputType="textPassword"
                 android:hint="Confirm Password"
                 android:textSize="16sp"/>
@@ -271,6 +280,8 @@
                 android:id="@+id/registerPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:textColorHint="#858C93"
+                android:fontFamily="sans-serif"
                 android:layout_weight="1"
                 android:inputType="phone"
                 android:hint="Phone Number"
@@ -315,6 +326,8 @@
             android:layout_height="match_parent"
             android:layout_weight="5.5"
             android:text="@string/userRoleText"
+            android:textColor="#4C5A68"
+            android:fontFamily="sans-serif"
             android:textSize="14sp"/>
 
         <LinearLayout
@@ -330,6 +343,8 @@
             android:layout_height="match_parent"
             android:layout_weight="5.5"
             android:text="@string/careTakerRoleText"
+            android:textColor="#4C5A68"
+            android:fontFamily="sans-serif"
             android:textSize="14sp"/>
 
         <LinearLayout
@@ -373,7 +388,11 @@
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:text="Register"
-                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:background="#3694ff"
+                android:fontFamily="sans-serif"
+                android:textAllCaps="false"
+                android:textSize="18sp"
                 android:layout_gravity="center_vertical"/>
 
             <TextView
@@ -382,6 +401,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/loginTextButton"
+                android:textColor="#4C5A68"
+                android:fontFamily="sans-serif"
                 android:textAlignment="center"
                 android:textSize="14sp"/>
 

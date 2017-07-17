@@ -1,5 +1,6 @@
 package com.atikafrds.caretaker;
 
+import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,14 +30,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 import java.util.Locale;
 
+import static com.atikafrds.caretaker.CaretakerActivity.partnerId;
+
 /**
  * Created by t-atika.firdaus on 22/06/17.
  */
 
 public class MapFragment extends Fragment {
-    private DatabaseReference caretakerDbReference, userDbReference;
-    private FirebaseAuth firebaseAuth;
-    private String partnerUserId, partnerName;
+    private DatabaseReference userDbReference;
+    private String partnerName;
     private double partnerLat, partnerLng;
 
     MapView mapView;
@@ -54,36 +57,18 @@ public class MapFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.map_fragment, container, false);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
-        caretakerDbReference = FirebaseDatabase.getInstance().getReference("caretakers");
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userDbReference = FirebaseDatabase.getInstance().getReference("users");
         if (user != null) {
-            caretakerDbReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        if (data.child("id").getValue().toString().equals(user.getUid())) {
-                            partnerUserId = data.child("partnerId").getValue().toString();
-                            break;
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e(CaretakerActivity.TAG, "Failed to read database.", databaseError.toException());
-                }
-            });
-
             userDbReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (partnerUserId != null) {
+                    if (!partnerId.isEmpty()) {
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
-                            if (data.child("id").getValue().toString().equals(partnerUserId)) {
+                            if (data.child("id").getValue().toString().equals(partnerId)) {
                                 partnerLat = Double.parseDouble(data.child("lat").getValue().toString());
                                 partnerLng = Double.parseDouble(data.child("lng").getValue().toString());
+//                                Toast.makeText(getContext(), partnerLat + " " + partnerLng, Toast.LENGTH_SHORT).show();
                                 partnerName = data.child("fullname").getValue().toString();
                                 break;
                             }
@@ -100,7 +85,6 @@ public class MapFragment extends Fragment {
 
         mapView = (MapView) view.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-
         mapView.onResume(); // needed to get the map to display immediately
 
         try {
@@ -121,7 +105,7 @@ public class MapFragment extends Fragment {
 
                 }
 
-                // For dropping a marker at a point on the Map
+//              For dropping a marker at a point on the Map
                 LatLng partnerLoc = new LatLng(partnerLat, partnerLng);
                 geocoder = new Geocoder(getContext(), Locale.getDefault());
                 try {
@@ -179,22 +163,4 @@ public class MapFragment extends Fragment {
         super.onLowMemory();
         mapView.onLowMemory();
     }
-
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
-//        userRole = sharedPref.getString(role, "");
-////        firebaseAuth = FirebaseAuth.getInstance();
-////
-////        if (userRole.equals(UserRole.DEVICE_USER.toString())) {
-////            databaseReference = FirebaseDatabase.getInstance().getReference("users");
-////        } else {
-////            databaseReference = FirebaseDatabase.getInstance().getReference("caretakers");
-////        }
-////
-////        FirebaseUser user = firebaseAuth.getCurrentUser();
-////        databaseReference = databaseReference.child(user.getUid());
-//    }
 }

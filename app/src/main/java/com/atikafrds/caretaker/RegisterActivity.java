@@ -21,13 +21,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import static com.atikafrds.caretaker.LoginActivity.role;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -120,34 +115,38 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
-                        if (task.isSuccessful()) {
-                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                            if (userRole == UserRole.DEVICE_USER) {
-                                databaseReference = FirebaseDatabase.getInstance().getReference("users");
-                            } else {
-                                databaseReference = FirebaseDatabase.getInstance().getReference("caretakers");
-                            }
-                            String userId = databaseReference.push().getKey();
-                            User user = new User(firebaseUser.getUid(), fullname, email, phoneNumber, "", 0, 0);
-                            databaseReference.child(userId).setValue(user);
-                            if (userRole == UserRole.DEVICE_USER) {
-                                startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));
-                            } else {
-                                startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));
-                            }
-                            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                            SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putString(role, userRole.toString());
-                            editor.commit();
-                            finish();
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Could not register. Please try again", Toast.LENGTH_SHORT).show();
-                        }
+                progressDialog.dismiss();
+                if (task.isSuccessful()) {
+                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                    if (userRole == UserRole.DEVICE_USER) {
+                        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+                    } else {
+                        databaseReference = FirebaseDatabase.getInstance().getReference("caretakers");
                     }
-                });
+                    String key = databaseReference.push().getKey();
+                    User user = new User(firebaseUser.getUid(), fullname, email, phoneNumber, "", 0, 0);
+                    databaseReference.child(key).setValue(user);
+                    if (userRole == UserRole.DEVICE_USER) {
+                        Intent intent = new Intent(getApplicationContext(), CaretakerActivity.class);
+                        intent.putExtra("currentUserId", firebaseUser.getUid());
+                        intent.putExtra("partnerId", "");
+                        intent.putExtra("userRole", userRole.toString());
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), CaretakerActivity.class);
+                        intent.putExtra("currentUserId", firebaseUser.getUid());
+                        intent.putExtra("partnerId", "");
+                        intent.putExtra("userRole", userRole.toString());
+                        startActivity(intent);
+                    }
+                    finish();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Could not register. Please try again", Toast.LENGTH_SHORT).show();
+                }
+                    }
+            });
     }
 }

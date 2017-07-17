@@ -30,8 +30,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import static com.atikafrds.caretaker.LoginActivity.role;
-
 /**
  * Created by t-atika.firdaus on 05/07/17.
  */
@@ -71,8 +69,8 @@ public class UserActivity extends Fragment implements GoogleApiClient.Connection
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
-        userRole = sharedPref.getString(role, "");
+//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
+//        userRole = sharedPref.getString(role, "");
         firebaseAuth = FirebaseAuth.getInstance();
 
         if (userRole.equals(UserRole.DEVICE_USER.toString())) {

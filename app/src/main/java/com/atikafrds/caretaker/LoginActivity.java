@@ -1,13 +1,10 @@
 package com.atikafrds.caretaker;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -28,8 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import static java.security.AccessController.getContext;
-
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = LoginActivity.class.getSimpleName();
@@ -42,8 +37,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
-    public static final String role = "userRole";
-    private boolean isHavePartner = true;
+    private String partnerId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,9 +113,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 if (data.child("id").getValue().toString().equals(user.getUid())) {
                                     found = true;
-                                    if (data.child("partnerId").getValue().toString().equals("")) {
-                                        isHavePartner = false;
-//                                        Toast.makeText(LoginActivity.this, "is have partner: " + sharedPref.getBoolean("isHavePartner", true), Toast.LENGTH_LONG).show();
+                                    if (!data.child("partnerId").getValue().toString().equals("")) {
+                                        partnerId = data.child("partnerId").getValue().toString();
                                     }
                                     break;
                                 }
@@ -130,18 +123,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (found) {
                                 if (userRole == UserRole.DEVICE_USER) {
                                     Intent intent = new Intent(getApplicationContext(), CaretakerActivity.class);
-                                    intent.putExtra("isHavePartner", isHavePartner);
+                                    intent.putExtra("currentUserId", user.getUid());
+                                    intent.putExtra("partnerId", partnerId);
+                                    intent.putExtra("userRole", userRole.toString());
                                     startActivity(intent);
-//                                    startActivity(new Intent(getApplicationContext(), CaretakerActivity.class));
                                 } else {
                                     Intent intent = new Intent(getApplicationContext(), CaretakerActivity.class);
-                                    intent.putExtra("isHavePartner", isHavePartner);
+                                    intent.putExtra("currentUserId", user.getUid());
+                                    intent.putExtra("partnerId", partnerId);
+                                    intent.putExtra("userRole", userRole.toString());
                                     startActivity(intent);
                                 }
-//                                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                                SharedPreferences.Editor editor = sharedPref.edit();
-//                                editor.putString(role, userRole.toString());
-//                                editor.commit();
                                 finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, "Account is not found", Toast.LENGTH_SHORT).show();

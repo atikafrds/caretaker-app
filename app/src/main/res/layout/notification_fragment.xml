@@ -23,7 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:text="@string/menu_profile"
+            android:text="@string/menu_notifications"
+            android:textColor="#4C5A68"
+            android:fontFamily="sans-serif"
             android:gravity="center"
             android:textSize="24sp"
             android:textStyle="bold"/>

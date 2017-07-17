@@ -17,7 +17,6 @@ public class Notification {
     double lat;
     double lng;
     String knownAddress;
-//    Timestamp timestamp;
 //    Date date;
 //    Time time;
     String date;

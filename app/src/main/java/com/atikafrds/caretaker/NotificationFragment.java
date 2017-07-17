@@ -23,9 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import static com.atikafrds.caretaker.CaretakerActivity.isHavePartner;
 
 /**
  * Created by t-atika.firdaus on 22/06/17.
@@ -49,7 +46,8 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.notification_fragment, container, false);
+        View view = inflater.inflate(R.layout.notification_fragment, container, false);
+        listView = (ListView) view.findViewById(R.id.listView);
 
         notifReference = FirebaseDatabase.getInstance().getReference("notification");
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -72,12 +70,11 @@ public class NotificationFragment extends Fragment {
                             notif.setLng(Double.parseDouble(data.child("lng").getValue().toString()));
                             notif.setDate(data.child("date").getValue().toString());
                             notif.setTime(data.child("time").getValue().toString());
-//                                notif.setDate(new Date(Date.parse(data.child("date").getValue().toString())));
-//                                notif.setTime(new Time(Time.parse(data.child("time").getValue().toString())));
+//                            notif.setDate(new Date(Date.parse(data.child("date").getValue().toString())));
+//                            notif.setTime(new Time(Time.parse(data.child("time").getValue().toString())));
                             notifications.add(notif);
                         }
                     }
-                    listView = (ListView) view.findViewById(R.id.listView);
                     notificationAdapter = new NotificationAdapter(getActivity(), R.layout.notification_list_item, notifications);
                     listView.setAdapter(notificationAdapter);
                 }

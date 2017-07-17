@@ -1,9 +1,6 @@
 package com.atikafrds.caretaker;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,18 +18,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import static com.atikafrds.caretaker.LoginActivity.role;
+import static com.atikafrds.caretaker.CaretakerActivity.userRole;
 
 /**
  * Created by t-atika.firdaus on 22/06/17.
  */
 
-public class ProfileFragment extends Fragment implements View.OnClickListener {
+public class ProfileFragment extends Fragment {
     private TextView profileFullname, profileEmail, profilePhoneNumber;
     private Button logoutButton;
-    private String userRole;
 
-    private FirebaseAuth.AuthStateListener authListener;
     private DatabaseReference databaseReference;
 
     public static ProfileFragment newInstance() {
@@ -49,17 +44,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         profileEmail = (TextView) view.findViewById(R.id.profileEmail);
         profilePhoneNumber = (TextView) view.findViewById(R.id.profilePhoneNumber);
         logoutButton = (Button) view.findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(this);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                getActivity().finish();
+            }
+        });
 
-//        authListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            userRole = sharedPref.getString(role, "");
-
-            if (userRole.equals(UserRole.DEVICE_USER.toString())) {
+            if (userRole == UserRole.DEVICE_USER) {
                 databaseReference = FirebaseDatabase.getInstance().getReference("users");
             } else {
                 databaseReference = FirebaseDatabase.getInstance().getReference("caretakers");
@@ -90,12 +86,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view == logoutButton) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getContext(), LoginActivity.class));
-            getActivity().finish();
-        }
-    }
+//    @Override
+//    public void onClick(View view) {
+//        if (view == logoutButton) {
+//
+//        }
+//    }
 }

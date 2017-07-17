@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.atikafrds.caretaker.LoginActivity">
+    tools:context="com.atikafrds.caretaker.LoginActivity"
+    android:background="#ffffff">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4.5"
         android:text="Application logo here"
+        android:fontFamily="sans-serif"
         android:textSize="24sp"
         android:gravity="center">
 
@@ -36,19 +37,14 @@
             android:layout_weight="12"
             android:orientation="vertical">
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:text="Email"-->
-                <!--android:textSize="16sp"/>-->
-
             <EditText
                 android:id="@+id/loginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:hint="Email"
+                android:fontFamily="sans-serif"
+                android:textColorHint="#858C93"
                 android:inputType="textEmailAddress"
                 android:textSize="18sp" />
 
@@ -89,20 +85,15 @@
             android:layout_weight="12"
             android:orientation="vertical">
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:text="Password"-->
-                <!--android:textSize="16sp"/>-->
-
             <EditText
                 android:id="@+id/loginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:inputType="textPassword"
+                android:textColorHint="#858C93"
                 android:hint="Password"
+                android:fontFamily="sans-serif"
                 android:textSize="18sp"/>
 
         </LinearLayout>
@@ -144,6 +135,8 @@
             android:layout_height="match_parent"
             android:layout_weight="5.5"
             android:text="@string/userRoleText"
+            android:fontFamily="sans-serif"
+            android:textColor="#4C5A68"
             android:textSize="14sp"/>
 
         <LinearLayout
@@ -160,6 +153,8 @@
             android:layout_height="match_parent"
             android:layout_weight="5.5"
             android:text="@string/careTakerRoleText"
+            android:fontFamily="sans-serif"
+            android:textColor="#4C5A68"
             android:textSize="14sp"/>
 
         <LinearLayout
@@ -203,7 +198,11 @@
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:text="Login"
-                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:background="#3694ff"
                 android:layout_gravity="center_vertical"/>
 
             <TextView
@@ -212,7 +211,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/registerTextButton"
+                android:fontFamily="sans-serif"
                 android:textAlignment="center"
+                android:textColor="#4C5A68"
                 android:textSize="14sp"/>
 
         </LinearLayout>
