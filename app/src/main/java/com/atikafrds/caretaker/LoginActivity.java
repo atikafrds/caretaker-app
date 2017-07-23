@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                             if (found) {
                                 if (userRole == UserRole.DEVICE_USER) {
-                                    Intent intent = new Intent(getApplicationContext(), CaretakerActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), UserActivity.class);
                                     intent.putExtra("currentUserId", user.getUid());
                                     intent.putExtra("partnerId", partnerId);
                                     intent.putExtra("userRole", userRole.toString());

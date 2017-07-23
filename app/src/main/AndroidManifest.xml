@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".UserActivity" />
         <activity android:name=".CaretakerActivity">
         </activity>
         <!--
