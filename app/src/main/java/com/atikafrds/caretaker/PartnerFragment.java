@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import static com.atikafrds.caretaker.CaretakerActivity.partnerId;
+import static com.atikafrds.caretaker.CaretakerActivity.userRole;
 import static com.atikafrds.caretaker.PartnerListAdapter.currentCaretakerReference;
 
 /**
@@ -32,7 +33,7 @@ import static com.atikafrds.caretaker.PartnerListAdapter.currentCaretakerReferen
  */
 
 public class PartnerFragment extends Fragment implements View.OnClickListener {
-    private DatabaseReference userDbReference;
+    private DatabaseReference dbReference;
     private String partnerName, partnerEmail, partnerPhoneNumber;
     public static TextView partnerNameView, partnerEmailView, partnerPhoneNumberView;
     private ArrayList<User> userList = new ArrayList<>();
@@ -63,11 +64,16 @@ public class PartnerFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        userDbReference = FirebaseDatabase.getInstance().getReference("users");
+        if (userRole == UserRole.DEVICE_USER) {
+            dbReference = FirebaseDatabase.getInstance().getReference("caretakers");
+        } else {
+            dbReference = FirebaseDatabase.getInstance().getReference("users");
+        }
+
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
-            userDbReference.addValueEventListener(new ValueEventListener() {
+            dbReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
