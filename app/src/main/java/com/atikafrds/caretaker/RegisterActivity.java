@@ -130,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     User user = new User(firebaseUser.getUid(), fullname, email, phoneNumber, "", 0, 0);
                     databaseReference.child(key).setValue(user);
                     if (userRole == UserRole.DEVICE_USER) {
-                        Intent intent = new Intent(getApplicationContext(), CaretakerActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), UserActivity.class);
                         intent.putExtra("currentUserId", firebaseUser.getUid());
                         intent.putExtra("partnerId", "");
                         intent.putExtra("userRole", userRole.toString());

@@ -17,13 +17,24 @@ public class Notification {
     double lat;
     double lng;
     String knownAddress;
-//    Date date;
-//    Time time;
-    String date;
-    String time;
+    Timestamp timestamp;
 
     public Notification() {
 
+    }
+
+    public Notification(String userId, String caretakerId, String userName, String userPhoneNumber,
+                        String caretakerPhoneNumber, double lat, double lng, String knownAddress,
+                        Timestamp timestamp) {
+        this.userId = userId;
+        this.caretakerId = caretakerId;
+        this.userName = userName;
+        this.userPhoneNumber = userPhoneNumber;
+        this.caretakerPhoneNumber = caretakerPhoneNumber;
+        this.lat = lat;
+        this.lng = lng;
+        this.knownAddress = knownAddress;
+        this.timestamp = timestamp;
     }
 
     public String getUserId() {
@@ -90,27 +101,11 @@ public class Notification {
         this.knownAddress = knownAddress;
     }
 
-    public String getDate() {
-        return date;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    //    public Timestamp getTimestamp() {
-//        return timestamp;
-//    }
-//
-//    public void setTimestamp(Timestamp timestamp) {
-//        this.timestamp = timestamp;
-//    }
 }

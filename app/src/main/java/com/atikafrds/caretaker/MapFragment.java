@@ -1,15 +1,11 @@
 package com.atikafrds.caretaker;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -23,9 +19,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -45,29 +39,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 import java.util.Locale;
 
+import static com.atikafrds.caretaker.CaretakerActivity.currentUserId;
 import static com.atikafrds.caretaker.CaretakerActivity.partnerId;
 import static com.atikafrds.caretaker.CaretakerActivity.userRole;
 
-/**
- * Created by t-atika.firdaus on 22/06/17.
- */
-
-public class MapFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class MapFragment extends Fragment {
     private DatabaseReference userDbReference;
     private String partnerName;
     private double partnerLat, partnerLng;
 
-    public static final String TAG = UserActivity.class.getSimpleName();
+    public static final String TAG = CaretakerActivity.class.getSimpleName();
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
-    private GoogleApiClient googleApiClient;
-    private LocationRequest locationRequest;
-    private Location lastLocation;
     private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
-
-    private DatabaseReference databaseReference;
-    private FirebaseAuth firebaseAuth;
 
     MapView mapView;
     private GoogleMap googleMap;
@@ -85,12 +69,6 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
 
         View view = inflater.inflate(R.layout.map_fragment, container, false);
 
-        if (userRole == UserRole.DEVICE_USER) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                checkLocationPermission();
-            }
-        }
-
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userDbReference = FirebaseDatabase.getInstance().getReference("users");
         if (user != null) {
@@ -102,7 +80,7 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
                             if (data.child("id").getValue().toString().equals(partnerId)) {
                                 partnerLat = Double.parseDouble(data.child("lat").getValue().toString());
                                 partnerLng = Double.parseDouble(data.child("lng").getValue().toString());
-//                                Toast.makeText(getContext(), partnerLat + " " + partnerLng, Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getContext(), partnerLat + " " + partnerLng, Toast.LENGTH_SHORT).show();
                                 partnerName = data.child("fullname").getValue().toString();
                                 break;
                             }
@@ -139,10 +117,11 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
 
                 }
 
-//              For dropping a marker at a point on the Map
+                String loc = "";
+                // For dropping a marker at a point on the Map
                 LatLng partnerLoc = new LatLng(partnerLat, partnerLng);
-                geocoder = new Geocoder(getContext(), Locale.getDefault());
                 try {
+                    geocoder = new Geocoder(getContext(), Locale.getDefault());
                     addresses = geocoder.getFromLocation(partnerLat, partnerLng, 1);
                     String address, city;
 
@@ -156,20 +135,24 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
                     } else {
                         city = "";
                     }
-                    String loc = address + ", " + city;
-
-                    googleMap.addMarker(new MarkerOptions().position(partnerLoc).title(partnerName).snippet(loc));
-//                map.addMarker(new MarkerOptions()               .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)).anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
-//                        .position(new LatLng(47.17, 27.5699))); //Iasi, Romania
-
-                    // For zooming automatically to the location of the marker
-                    CameraPosition cameraPosition = new CameraPosition.Builder().target(partnerLoc).zoom(12).build();
-                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                    loc = address + ", " + city;
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.e("Geocoder failed: ", e.toString());
                 }
+
+                googleMap.addMarker(new MarkerOptions().position(partnerLoc).title(partnerName).snippet(loc));
+
+                // For zooming automatically to the location of the marker
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(partnerLoc).zoom(12).build();
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
         });
+
+//        if (userRole == UserRole.DEVICE_USER) {
+//            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                checkLocationPermission();
+//            }
+//        }
 
         return view;
     }
@@ -177,18 +160,18 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (userRole == UserRole.DEVICE_USER) {
-            googleApiClient = new GoogleApiClient.Builder(getContext())
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API)
-                    .build();
-
-            if (checkGooglePlayServices()) {
-                buildGoogleApiClient();
-            }
-            createLocationRequest();
-        }
+//        if (userRole == UserRole.DEVICE_USER) {
+//            googleApiClient = new GoogleApiClient.Builder(getContext())
+//                    .addConnectionCallbacks(this)
+//                    .addOnConnectionFailedListener(this)
+//                    .addApi(LocationServices.API)
+//                    .build();
+//
+//            if (checkGooglePlayServices()) {
+//                buildGoogleApiClient();
+//            }
+//            createLocationRequest();
+//        }
     }
 
 
@@ -211,11 +194,11 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
         }
     }
 
-    private synchronized void buildGoogleApiClient() {
-        googleApiClient = new GoogleApiClient.Builder(getContext())
-                .addConnectionCallbacks(this).addApi(LocationServices.API)
-                .build();
-    }
+//    private synchronized void buildGoogleApiClient() {
+//        googleApiClient = new GoogleApiClient.Builder(getContext())
+//                .addConnectionCallbacks(this).addApi(LocationServices.API)
+//                .build();
+//    }
 
     private boolean checkGooglePlayServices() {
         int checkGooglePlayServices = GooglePlayServicesUtil
@@ -232,145 +215,145 @@ public class MapFragment extends Fragment implements GoogleApiClient.ConnectionC
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (userRole == UserRole.DEVICE_USER) {
-            if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
-                if (resultCode == Activity.RESULT_OK) {
-                    if (!googleApiClient.isConnecting() && !googleApiClient.isConnected()) {
-                        googleApiClient.connect();
-                    }
-                } else if (resultCode == Activity.RESULT_CANCELED) {
-                    Toast.makeText(getContext(), "Google Play Services must be installed.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
+//        if (userRole == UserRole.DEVICE_USER) {
+//            if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
+//                if (resultCode == Activity.RESULT_OK) {
+//                    if (!googleApiClient.isConnecting() && !googleApiClient.isConnected()) {
+//                        googleApiClient.connect();
+//                    }
+//                } else if (resultCode == Activity.RESULT_CANCELED) {
+////                    Toast.makeText(getContext(), "Google Play Services must be installed.",
+////                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        }
     }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        if (userRole == UserRole.DEVICE_USER) {
-            if (googleApiClient.isConnected()) {
-                Log.d("map", "Google_Api_Client: It was connected on (onConnected) function, working as it should.");
-            } else {
-                Log.d("map failed", "Google_Api_Client: It was NOT connected on (onConnected) function, It is definetly bugged.");
-            }
+//    @Override
+//    public void onConnected(@Nullable Bundle bundle) {
+//        if (userRole == UserRole.DEVICE_USER) {
+//            if (googleApiClient.isConnected()) {
+//                Log.d("map", "Google_Api_Client: It was connected on (onConnected) function, working as it should.");
+//            } else {
+//                Log.d("map failed", "Google_Api_Client: It was NOT connected on (onConnected) function, It is definetly bugged.");
+//            }
+//
+//            if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+//                    == PackageManager.PERMISSION_GRANTED) {
+//                startLocationUpdates();
+//            }
+//
+//            if (lastLocation != null) {
+////                Toast.makeText(getContext(), "Latitude: " + lastLocation.getLatitude() + "," +
+////                        "Longitude: " + lastLocation.getLongitude(), Toast.LENGTH_LONG).show();
+//                databaseReference.child("lat").setValue(lastLocation.getLatitude());
+//                databaseReference.child("lng").setValue(lastLocation.getLongitude());
+//            }
+//        }
+//    }
 
-            if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
-                startLocationUpdates();
-            }
+//    protected void createLocationRequest() {
+//        locationRequest = new LocationRequest();
+//        locationRequest.setInterval(20000);
+//        locationRequest.setFastestInterval(5000);
+//        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//    }
 
-            if (lastLocation != null) {
-                Toast.makeText(getContext(), "Latitude: " + lastLocation.getLatitude() + "," +
-                        "Longitude: " + lastLocation.getLongitude(), Toast.LENGTH_LONG).show();
-                databaseReference.child("lat").setValue(lastLocation.getLatitude());
-                databaseReference.child("lng").setValue(lastLocation.getLongitude());
-            }
-        }
-    }
+//    protected void startLocationUpdates() {
+//        try {
+//            LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
+//        } catch (SecurityException e) {
+//            Log.e(TAG, "Couldn't request location update", e);
+//        }
+//    }
+//
+//    @Override
+//    public void onConnectionSuspended(int i) {
+//        Log.d(TAG, "Connection to Google API suspended");
+//    }
+//
+//    @Override
+//    public void onLocationChanged(Location location) {
+//        if (userRole == UserRole.DEVICE_USER) {
+//            lastLocation = location;
+////            Toast.makeText(getContext(), "Latitude: " + lastLocation.getLatitude() + "," +
+////                    "Longitude:" + lastLocation.getLongitude(), Toast.LENGTH_LONG).show();
+//        }
+//    }
 
-    protected void createLocationRequest() {
-        locationRequest = new LocationRequest();
-        locationRequest.setInterval(20000);
-        locationRequest.setFastestInterval(5000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-    }
-
-    protected void startLocationUpdates() {
-        try {
-            LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
-        } catch (SecurityException e) {
-            Log.e(TAG, "Couldn't request location update", e);
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Log.d(TAG, "Connection to Google API suspended");
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        if (userRole == UserRole.DEVICE_USER) {
-            lastLocation = location;
-            Toast.makeText(getContext(), "Latitude: " + lastLocation.getLatitude() + "," +
-                    "Longitude:" + lastLocation.getLongitude(), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
+//    @Override
+//    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+//
+//    }
 
     protected void stopLocationUpdates() {
-        if (googleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
-        }
+//        if (googleApiClient != null) {
+//            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+//        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (googleApiClient != null) {
-            googleApiClient.disconnect();
-        }
+//        if (googleApiClient != null) {
+//            googleApiClient.disconnect();
+//        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (userRole == UserRole.DEVICE_USER) {
-            googleApiClient.connect();
-        }
+//        if (userRole == UserRole.DEVICE_USER) {
+//            googleApiClient.connect();
+//        }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (userRole == UserRole.DEVICE_USER) {
-            switch (requestCode) {
-                case MY_PERMISSIONS_REQUEST_LOCATION: {
-                    // If request is cancelled, the result arrays are empty.
-                    if (grantResults.length > 0
-                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        // permission was granted, yay! Do the
-                        // contacts-related task you need to do.
-                        if (ContextCompat.checkSelfPermission(getActivity(),
-                                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                                == PackageManager.PERMISSION_GRANTED) {
-
-                            if (googleApiClient == null) {
-                                buildGoogleApiClient();
-                            }
-                        }
-
-                    } else {
-                        // permission denied, boo! Disable the
-                        // functionality that depends on this permission.
-                        Toast.makeText(getContext(), "permission denied", Toast.LENGTH_LONG).show();
-                    }
-                    return;
-                }
-            }
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        if (userRole == UserRole.DEVICE_USER) {
+//            switch (requestCode) {
+//                case MY_PERMISSIONS_REQUEST_LOCATION: {
+//                    // If request is cancelled, the result arrays are empty.
+//                    if (grantResults.length > 0
+//                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                        // permission was granted, yay! Do the
+//                        // contacts-related task you need to do.
+//                        if (ContextCompat.checkSelfPermission(getActivity(),
+//                                android.Manifest.permission.ACCESS_FINE_LOCATION)
+//                                == PackageManager.PERMISSION_GRANTED) {
+//
+//                            if (googleApiClient == null) {
+//                                buildGoogleApiClient();
+//                            }
+//                        }
+//
+//                    } else {
+//                        // permission denied, boo! Disable the
+//                        // functionality that depends on this permission.
+////                        Toast.makeText(getContext(), "permission denied", Toast.LENGTH_LONG).show();
+//                    }
+//                    return;
+//                }
+//            }
+//        }
+//    }
 
     @Override
     public void onResume() {
         super.onResume();
         mapView.onResume();
-        if (userRole == UserRole.DEVICE_USER) {
-            startLocationUpdates();
-        }
+//        if (userRole == UserRole.DEVICE_USER) {
+//            startLocationUpdates();
+//        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         mapView.onPause();
-        if (userRole == UserRole.DEVICE_USER) {
-            stopLocationUpdates();
-        }
+//        if (userRole == UserRole.DEVICE_USER) {
+//            stopLocationUpdates();
+//        }
     }
 
     @Override

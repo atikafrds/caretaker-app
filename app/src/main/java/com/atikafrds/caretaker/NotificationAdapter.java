@@ -10,7 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by t-atika.firdaus on 15/07/17.
@@ -53,8 +56,16 @@ public class NotificationAdapter extends ArrayAdapter<Notification> {
         });
         notifSender.setText(notification.getUserName());
         notifLocation.setText(notification.getKnownAddress());
-        notifTimestamp.setText(notification.getDate().toString());
+        Date date = new Date(notification.getTimestamp().getTime());
+        Format format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        notifTimestamp.setText(format.format(date));
 
         return view;
+    }
+
+    public static String convertTime(long time) {
+        Date date = new Date(time);
+        Format format = new SimpleDateFormat("dd MM yyyy HH:mm");
+        return format.format(date);
     }
 }

@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -68,10 +69,7 @@ public class NotificationFragment extends Fragment {
                             notif.setKnownAddress(data.child("knownAddress").getValue().toString());
                             notif.setLat(Double.parseDouble(data.child("lat").getValue().toString()));
                             notif.setLng(Double.parseDouble(data.child("lng").getValue().toString()));
-                            notif.setDate(data.child("date").getValue().toString());
-                            notif.setTime(data.child("time").getValue().toString());
-//                            notif.setDate(new Date(Date.parse(data.child("date").getValue().toString())));
-//                            notif.setTime(new Time(Time.parse(data.child("time").getValue().toString())));
+                            notif.setTimestamp(new Timestamp(Long.parseLong(data.child("timestamp").getValue().toString())));
                             notifications.add(notif);
                         }
                     }

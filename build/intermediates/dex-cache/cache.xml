@@ -925,8 +925,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="c6b6593a5a3c7e0896b5959cb2c3d073c826da62">
+        sha1="e51e3f2b1c8420f61498ba52d381b7afc2147deb">
         <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/Caretaker App/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_eddf2259e5472dde03e185e318e665f42a6d9ec2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/t-atika.firdaus/AndroidStudioProjects/Caretaker App/app/libs/volley.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/Caretaker App/app/build/intermediates/transforms/dex/debug/folders/1000/2/volley_d19568649f2948bd6e9a1caaf220585480526eb0/classes.dex" />
     </item>
     <item
         is-multidex="false"

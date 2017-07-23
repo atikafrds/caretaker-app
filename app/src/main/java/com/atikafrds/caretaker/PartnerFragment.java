@@ -24,21 +24,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static com.atikafrds.caretaker.CaretakerActivity.currentUserId;
 import static com.atikafrds.caretaker.CaretakerActivity.partnerId;
 import static com.atikafrds.caretaker.CaretakerActivity.userRole;
-import static com.atikafrds.caretaker.PartnerListAdapter.currentCaretakerReference;
-
-/**
- * Created by t-atika.firdaus on 22/06/17.
- */
 
 public class PartnerFragment extends Fragment implements View.OnClickListener {
     private DatabaseReference dbReference;
     private String partnerName, partnerEmail, partnerPhoneNumber;
     public static TextView partnerNameView, partnerEmailView, partnerPhoneNumberView;
-    private ArrayList<User> userList = new ArrayList<>();
+    private ArrayList<User> userList;
     private ListView listView;
     private Button changePartner;
+    private String currentUserKey, currentPartnerKey = "";
+    private User currentUser = new User(), currentPartner = new User();
 
     public static PartnerFragment newInstance() {
         PartnerFragment fragment = new PartnerFragment();
@@ -53,11 +51,75 @@ public class PartnerFragment extends Fragment implements View.OnClickListener {
         partnerNameView = (TextView) view.findViewById(R.id.partnerFullname);
         partnerEmailView = (TextView) view.findViewById(R.id.partnerEmail);
         partnerPhoneNumberView = (TextView) view.findViewById(R.id.partnerPhoneNumber);
+
+        FirebaseDatabase.getInstance().getReference(userRole == UserRole.DEVICE_USER ? "users"
+            : "caretakers").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    if (data.child("id").getValue().toString().equals(currentUserId)) {
+                        currentUserKey = data.getKey();
+                        currentUser.setId(data.child("id").getValue().toString());
+                        currentUser.setFullname(data.child("fullname").getValue().toString());
+                        currentUser.setEmail(data.child("email").getValue().toString());
+                        currentUser.setPhoneNumber(data.child("phoneNumber").getValue().toString());
+                        currentUser.setLat(Double.parseDouble(data.child("lat").getValue().toString()));
+                        currentUser.setLng(Double.parseDouble(data.child("lng").getValue().toString()));
+                        currentUser.setPartner(data.child("partnerId").getValue().toString());
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        FirebaseDatabase.getInstance().getReference(userRole == UserRole.DEVICE_USER ? "caretakers"
+                : "users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    if (!partnerId.isEmpty() && data.child("id").getValue().toString().equals(partnerId)) {
+                        currentPartnerKey = data.getKey();
+                        currentPartner.setId(data.child("id").getValue().toString());
+                        currentPartner.setFullname(data.child("fullname").getValue().toString());
+                        currentPartner.setEmail(data.child("email").getValue().toString());
+                        currentPartner.setPhoneNumber(data.child("phoneNumber").getValue().toString());
+                        currentPartner.setLat(Double.parseDouble(data.child("lat").getValue().toString()));
+                        currentPartner.setLng(Double.parseDouble(data.child("lng").getValue().toString()));
+                        currentPartner.setPartner(data.child("partnerId").getValue().toString());
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         changePartner = (Button) view.findViewById(R.id.changePartner);
         changePartner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 partnerId = "";
+
+                currentUser.setPartner("");
+                if (!currentUserKey.isEmpty()) {
+                    FirebaseDatabase.getInstance().getReference(userRole == UserRole.DEVICE_USER ? "users"
+                        : "caretakers").child(currentUserKey).setValue(currentUser);
+                }
+
+                currentPartner.setPartner("");
+                if (!currentPartnerKey.isEmpty()) {
+                    FirebaseDatabase.getInstance().getReference(userRole == UserRole.DEVICE_USER ? "caretakers"
+                            : "users").child(currentPartnerKey).setValue(currentPartner);
+                }
+
                 view.findViewById(R.id.select_partner_list_view).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.section1).setVisibility(View.GONE);
                 view.findViewById(R.id.section2).setVisibility(View.GONE);
@@ -76,6 +138,7 @@ public class PartnerFragment extends Fragment implements View.OnClickListener {
             dbReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    userList = new ArrayList<>();
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         User newUser = new User();
                         newUser.setFullname(data.child("fullname").getValue().toString());
@@ -97,8 +160,10 @@ public class PartnerFragment extends Fragment implements View.OnClickListener {
                             partnerPhoneNumberView.setText(partnerPhoneNumber);
                         }
                     }
-                    PartnerListAdapter adapter = new PartnerListAdapter(getContext(), R.layout.partner_list_item, userList);
-                    listView.setAdapter(adapter);
+                    if (!userList.isEmpty()) {
+                        PartnerListAdapter adapter = new PartnerListAdapter(getContext(), R.layout.partner_list_item, userList);
+                        listView.setAdapter(adapter);
+                    }
                 }
 
                 @Override
