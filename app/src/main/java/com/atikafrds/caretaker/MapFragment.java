@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -68,6 +69,9 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.map_fragment, container, false);
+
+        ImageView imageView = (ImageView) view.findViewById(R.id.bluetoothButton);
+        imageView.setVisibility(View.GONE);
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userDbReference = FirebaseDatabase.getInstance().getReference("users");

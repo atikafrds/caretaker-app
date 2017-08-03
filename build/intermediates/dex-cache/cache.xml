@@ -741,15 +741,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/t-atika.firdaus/.android/build-cache/86d159c35404b5f0d470bbdbcdfb3dc7e6db24ba/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/Caretaker App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6c8f1ae96fc39880a32b2535caf70caf58d1488b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/t-atika.firdaus/.android/build-cache/115ea1f6b02695d4314a38ceae43427f0a8d9199/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -925,7 +916,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="e51e3f2b1c8420f61498ba52d381b7afc2147deb">
+        sha1="439c8abf60bbde4f917ac30f10d678d8853872da">
         <dex dex="/home/t-atika.firdaus/AndroidStudioProjects/Caretaker App/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_eddf2259e5472dde03e185e318e665f42a6d9ec2/classes.dex" />
     </item>
     <item
