@@ -85,11 +85,4 @@ public class UserProfileFragment extends Fragment {
         }
         return view;
     }
-
-//    @Override
-//    public void onClick(View view) {
-//        if (view == logoutButton) {
-//
-//        }
-//    }
 }

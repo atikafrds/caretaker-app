@@ -68,7 +68,7 @@
                     android:id="@+id/selectPartner"
                     android:textColor="#ffffff"
                     android:textAllCaps="false"
-                    android:background="#3694ff"/>
+                    android:background="#000000"/>
 
             </LinearLayout>
 

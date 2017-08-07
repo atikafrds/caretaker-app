@@ -46,12 +46,14 @@ public class NotificationAdapter extends ArrayAdapter<Notification> {
         openLocButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri gmmIntentUri = Uri.parse("geo:" + Double.toString(notification.getLat()) + "," + Double.toString(notification.getLng()));
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                if (mapIntent.resolveActivity(getContext().getPackageManager()) != null) {
-                    getContext().startActivity(mapIntent);
-                }
+                String label = notification.getUserName() + " location";
+                String uriBegin = "geo:" + Double.toString(notification.getLat()) + "," + Double.toString(notification.getLng());
+                String query = Double.toString(notification.getLat()) + "," + Double.toString(notification.getLng()) + "(" + label + ")";
+                String encodedQuery = Uri.encode(query);
+                String uriString = uriBegin + "?q=" + encodedQuery + "&z=16";
+                Uri uri = Uri.parse(uriString);
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, uri);
+                getContext().startActivity(intent);
             }
         });
         notifSender.setText(notification.getUserName());

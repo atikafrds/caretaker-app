@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="client-2.0.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nexmo/client/2.0.2/451977ac66a616596548c8d23978c7fa6397b5d/client-2.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nexmo/client/2.0.2/c11633fc594d526a81041ec0c4ece04f6247e659/client-2.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

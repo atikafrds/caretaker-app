@@ -36,14 +36,6 @@
                 android:textSize="24sp"
                 android:textStyle="bold"/>
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:id="@+id/bluetoothButton"
-                android:src="@drawable/ic_action_device_access_bluetooth_searching"/>
-
         </LinearLayout>
 
         <LinearLayout

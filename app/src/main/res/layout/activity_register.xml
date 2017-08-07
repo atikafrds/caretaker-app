@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.atikafrds.caretaker.RegisterActivity">
+    tools:context="com.atikafrds.caretaker.RegisterActivity"
+    android:background="#9ae065">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,9 +19,9 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:text="Register"
-        android:textColor="#4C5A68"
+        android:textColor="#000000"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:gravity="center"/>
 
     <LinearLayout
@@ -389,7 +390,7 @@
                 android:layout_weight="2"
                 android:text="Register"
                 android:textColor="#FFFFFF"
-                android:background="#3694ff"
+                android:background="#000000"
                 android:fontFamily="sans-serif"
                 android:textAllCaps="false"
                 android:textSize="18sp"

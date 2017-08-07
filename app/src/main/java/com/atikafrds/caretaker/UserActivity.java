@@ -1,8 +1,7 @@
 package com.atikafrds.caretaker;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,12 +13,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.ImageView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -27,16 +23,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONObject;
-
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 public class UserActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -54,7 +42,8 @@ public class UserActivity extends AppCompatActivity implements
 
     private BottomNavigationView bottomNavigation;
     private int mSelectedItem;
-    private User currentUser, currentPartner;
+    public static final User currentUser = new User(), currentPartner = new User();
+    private ImageView bluetoothButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +61,16 @@ public class UserActivity extends AppCompatActivity implements
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 selectFragment(item);
                 return true;
+            }
+        });
+
+        bluetoothButton = (ImageView) findViewById(R.id.bluetoothButton);
+        bluetoothButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ArduinoActivity.class);
+                startActivity(intent);
+//                startActivityForResult(intent, REQUEST_CONNECT_DEVICE_SECURE);
             }
         });
 
@@ -117,8 +116,6 @@ public class UserActivity extends AppCompatActivity implements
     private void refreshLocation(final Location location) {
         Log.d(TAG, location.toString());
 
-        currentUser = new User();
-        currentPartner = new User();
         lat = location.getLatitude();
         lng = location.getLongitude();
 

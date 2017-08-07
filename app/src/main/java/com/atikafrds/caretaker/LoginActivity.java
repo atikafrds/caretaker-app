@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private DatabaseReference databaseReference;
 
     private String partnerId = "";
+    private String key = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         registerTextButton = (TextView) findViewById(R.id.registerTextButton);
         registerTextButton.setOnClickListener(this);
-
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             boolean found = false;
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 if (data.child("id").getValue().toString().equals(user.getUid())) {
+                                    key = data.getKey();
                                     found = true;
                                     if (!data.child("partnerId").getValue().toString().equals("")) {
                                         partnerId = data.child("partnerId").getValue().toString();

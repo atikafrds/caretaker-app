@@ -18,6 +18,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
@@ -31,10 +47,14 @@ dependencies {
     compile 'com.google.android.gms:play-services-places:10.2.6'
     compile 'com.google.android.gms:play-services-maps:10.2.6'
     compile 'com.android.support:design:25.2.0'
+    compile 'com.google.firebase:firebase-core:10.2.6'
+    compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.google.firebase:firebase-auth:10.2.6'
     compile 'com.google.firebase:firebase-database:10.2.6'
-    compile files('libs/volley.jar')
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.nexmo:client:2.0.2'
+    compile 'org.apache.httpcomponents:httpclient:4.4'
 }
 
 apply plugin: 'com.google.gms.google-services'

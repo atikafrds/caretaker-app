@@ -15,6 +15,16 @@
         android:layout_weight="9"
         android:background="#ffffff"
         android:animateLayoutChanges="true">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right|top"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/bluetoothButton"
+            android:src="@drawable/ic_action_device_access_bluetooth_searching"/>
+
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView

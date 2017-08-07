@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -54,8 +55,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         loginTextButton = (TextView) findViewById(R.id.loginTextButton);
         loginTextButton.setOnClickListener(this);
-
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);

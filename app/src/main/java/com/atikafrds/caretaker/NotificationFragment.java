@@ -69,7 +69,7 @@ public class NotificationFragment extends Fragment {
                             notif.setKnownAddress(data.child("knownAddress").getValue().toString());
                             notif.setLat(Double.parseDouble(data.child("lat").getValue().toString()));
                             notif.setLng(Double.parseDouble(data.child("lng").getValue().toString()));
-                            notif.setTimestamp(new Timestamp(Long.parseLong(data.child("timestamp").getValue().toString())));
+                            notif.setTimestamp(new Timestamp(Long.parseLong(data.child("timestamp").child("time").getValue().toString())));
                             notifications.add(notif);
                         }
                     }

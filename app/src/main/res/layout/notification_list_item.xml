@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Open Location"
-                    android:background="#3694ff"
+                    android:background="#000000"
                     android:textAllCaps="false"
                     android:textColor="#ffffff"
                     android:layout_gravity="center"

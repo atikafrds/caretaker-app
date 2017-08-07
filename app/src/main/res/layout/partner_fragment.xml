@@ -248,7 +248,7 @@
                 android:textColor="#ffffff"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:background="#3694ff"
+                android:background="#000000"
                 android:textAllCaps="false"
                 android:textSize="16sp"/>
 

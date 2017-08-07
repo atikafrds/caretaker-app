@@ -108,4 +108,16 @@ public class Notification {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
+//    public int compareTo(Notification notification) {
+//
+//        Timestamp compareQuantity = ((Notification) notification).getTimestamp();
+//
+//        //ascending order
+//        return this.timestamp - compareQuantity;
+//
+//        //descending order
+//        //return compareQuantity - this.quantity;
+//
+//    }
 }
