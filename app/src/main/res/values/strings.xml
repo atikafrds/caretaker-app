@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">CareTaker</string>
+    <string name="app_name">bSAFE</string>
     <string name="registerTextButton">Don\'t have any account? Register <b>here</b></string>
     <string name="loginTextButton">Have an account? Login <b>here</b></string>
     <string name="userRoleText">I\'m a device user</string>

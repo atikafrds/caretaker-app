@@ -286,9 +286,9 @@ public class ArduinoActivity extends Activity {
                     user.getLat(), user.getLng(), loc, new Timestamp(System.currentTimeMillis()));
             databaseReference.child(key).setValue(notification);
 
-            String text = "You got an alert from " + user.getFullname() + ". " +
-                    (loc != "" ? "Their location is near " + loc + ". " : "") + "Lat: " + user.getLat()
-                    + ", Lng: " + user.getLng() + ". Open your apps for further location. ";
+            String text = "bSAFE Panic Button is Activated! Their location is near " + loc +
+                    ". Open your bSAFE mobile apps to observe the detailed user location." +
+                    "Stay safe with bSAFE";
 
             String url = "https://rest.nexmo.com/sms/json";
             HashMap<String, String> params = new HashMap<>();
